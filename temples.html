@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smartone - Nusantara Bali Heritage </title>
+  <meta name="description" content="Arsitektur dan pura Bali sebagai kosmologi: ruang, gerbang, mandala, dan etika." />
+  <link rel="stylesheet" href="assets/css/publish.css" />
+  <link rel="stylesheet" href="assets/css/publish.css" />
+  <link rel="icon" href="assets/img/smartone.png" type="image/x-icon">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/smartone.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/smartone.jpeg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { obsidian: "#0B0B0B", gold: "#C8A951", ash: "#EAEAEA", stone: "#2A2A2A" },
+          fontFamily: { serif: ["ui-serif", "Georgia", "Times New Roman", "serif"], sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"] },
+          boxShadow: { deep: "0 20px 60px rgba(0,0,0,.55)", glow: "0 0 0 1px rgba(200,169,81,.25), 0 0 24px rgba(200,169,81,.12)" }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/base.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"Temples — Bali: The Sacred Veil",
+    "description":"Arsitektur dan pura Bali sebagai kosmologi: ruang, gerbang, mandala, dan etika.",
+    "breadcrumb":{
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"index.html"},
+        {"@type":"ListItem","position":2,"name":"Temples","item":"temples.html"}
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-obsidian text-ash font-sans selection:bg-gold/20 selection:text-ash">
+  <div class="fixed inset-0 grain z-[1]"></div>
+
+  <!-- Header shared (same as others) -->
+  <header class="fixed top-0 left-0 right-0 z-[60]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div
+        class="mt-4 flex items-center justify-between rounded-2xl bg-obsidian/55 backdrop-blur-md border border-gold/15 shadow-deep">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3">
+          <div class="relative h-10 w-10 sm:h-11 sm:w-11 rounded-2xl border border-gold/30 bg-obsidian/40 overflow-hidden">
+  <!-- glow frame -->
+  <div class="absolute inset-0 rounded-2xl shadow-[0_0_0_1px_rgba(200,169,81,.18),0_0_24px_rgba(200,169,81,.10)]"></div>
+
+  <!-- logo -->
+     <img
+      src="assets/img/logo.svg"
+      alt="Bali: The Sacred Veil logo"
+      class="relative z-[1] w-full h-full object-cover scale-[1.35]"
+      loading="eager"
+      decoding="async"
+   />
+</div>
+          <div class="leading-tight">
+            <div class="font-serif tracking-wide">Nusantara Bali Heritage</div>
+            <div class="text-xs text-ash/60 -mt-0.5" data-i18n="nav.brandSub">Budaya Bali Keunikan & Identitas Nusantara</div>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-2 pr-3">
+          <button id="audioBtn"
+            class="rounded-xl border border-gold/15 bg-obsidian/50 px-3 py-2 text-sm text-ash/90 hover:border-gold/35 transition">
+            <span id="audioLabel" class="text-gold">Audio Off</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <audio id="bgAudio" preload="auto" loop>
+    <source src="assets/audio/Lagu Daerah Bali.mp3" type="audio/mpeg" />
+  </audio>
+
+  <main class="relative z-[10] pt-28">
+    <section class="relative py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <a href="index.html#overview"
+          class="reveal inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30">
+          ← <span data-i18n="common.back">Kembali ke Perjalanan</span>
+        </a>
+
+        <div class="mt-6 max-w-3xl">
+          <p class="reveal text-gold/90 tracking-[0.18em] uppercase text-xs">Temples as Gateways</p>
+          <h1 class="reveal mt-3 font-serif text-3xl sm:text-5xl tracking-wide">Ruang Suci dan Kosmologi Bali</h1>
+          <p class="reveal mt-5 text-ash/80 leading-relaxed">
+            Arsitektur pura di Bali dibangun bukan hanya sebagai tempat ibadah,
+            tetapi sebagai representasi kosmologi dan keteraturan ruang hidup masyarakat Nusantara.
+          </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <div class="lg:col-span-7 relative rounded-3xl overflow-hidden border border-gold/15 shadow-deep">
+            <div
+              class="absolute inset-0 bg-[url('assets/img/temple-hero.jpg')] bg-cover bg-center opacity-80 slow-zoom">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent"></div>
+            <div class="absolute bottom-5 left-6 right-6">
+              <h2 class="font-serif text-2xl tracking-wide">Where Earth Meets the Divine</h2>
+              <p class="text-sm text-ash/70 mt-1">Arsitektur indah dan Warisan pulau bali</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 p-7 shadow-deep">
+              <h2 class="font-serif text-xl tracking-wide">Catatan Perjalanan</h2>
+              <p class="mt-3 text-ash/75 leading-relaxed">
+                Ruang adalah bahasa. Pura mengatur gerak, niat, dan kesadaran melalui struktur.
+              </p>
+
+              <div class="mt-6 space-y-3">
+                <div class="rounded-2xl border border-gold/10 bg-obsidian/35 p-4">
+                  <div class="text-sm text-gold/90 font-medium">Mandala zoning</div>
+                  <div class="text-sm text-ash/70 mt-1">Struktur ruang bertingkat yang menuntun sikap dan kesadaran.
+                  </div>
+                </div>
+                <div class="rounded-2xl border border-gold/10 bg-obsidian/35 p-4">
+                  <div class="text-sm text-gold/90 font-medium">Threshold ethics</div>
+                  <div class="text-sm text-ash/70 mt-1">Transisi ruang juga transisi batin—cara hadir itu penting.</div>
+                </div>
+              </div>
+
+              <a class="mt-6 inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30"
+                href="dance-detail.html?dance=temples">
+                <span data-i18n="common.readMore">Baca Selengkapnya</span> →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <footer class="mt-16 pb-10 text-center text-sm text-ash/55">
+          <div class="mx-auto max-w-3xl px-4">
+            <div class="footer-line mb-6"></div>
+            <p class="leading-relaxed">
+              © <span id="year"></span> <span class="text-ash/70">Nusantara Bali Heritage</span> — Smartone.
+            </p>
+            <p class="mt-2 text-xs text-ash/45 leading-relaxed">
+              Presented with cultural respect. Visuals may be symbolic. Avoids modification of sacred symbols and
+              sensational framing.
+            </p>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/publish.js"></script>
+
+</body>
+
+</html>

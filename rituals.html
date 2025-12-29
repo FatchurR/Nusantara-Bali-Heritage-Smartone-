@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smartone - Nusantara Bali Heritage</title>
+  <link rel="stylesheet" href="assets/css/publish.css" />
+  <link rel="stylesheet" href="assets/css/publish.css" />
+  <link rel="icon" href="assets/img/smartone.png" type="image/x-icon">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/smartone.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/smartone.jpeg">
+  <meta name="description"
+    content="Ritual Bali secara edukatif: Ngaben, Galungan, Kuningan—makna, konteks, dan etika penyajian." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { obsidian: "#0B0B0B", gold: "#C8A951", ash: "#EAEAEA", stone: "#2A2A2A" },
+          fontFamily: { serif: ["ui-serif", "Georgia", "Times New Roman", "serif"], sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"] },
+          boxShadow: { deep: "0 20px 60px rgba(0,0,0,.55)", glow: "0 0 0 1px rgba(200,169,81,.25), 0 0 24px rgba(200,169,81,.12)" }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/base.css" />
+
+  <!-- CollectionPage + Breadcrumb structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"Rituals — Bali: The Sacred Veil",
+    "description":"Ritual Bali secara edukatif: Ngaben, Galungan, Kuningan—makna, konteks, dan etika penyajian.",
+    "isPartOf":{"@type":"WebSite","name":"Bali: The Sacred Veil"},
+    "breadcrumb":{
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"index.html"},
+        {"@type":"ListItem","position":2,"name":"Rituals","item":"rituals.html"}
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-obsidian text-ash font-sans selection:bg-gold/20 selection:text-ash">
+  <div class="fixed inset-0 grain z-[1]"></div>
+
+  <!-- Header shared -->
+  <header class="fixed top-0 left-0 right-0 z-[60]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div
+        class="mt-4 flex items-center justify-between rounded-2xl bg-obsidian/55 backdrop-blur-md border border-gold/15 shadow-deep">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3">
+          <div class="relative h-10 w-10 sm:h-11 sm:w-11 rounded-2xl border border-gold/30 bg-obsidian/40 overflow-hidden">
+  <!-- glow frame -->
+  <div class="absolute inset-0 rounded-2xl shadow-[0_0_0_1px_rgba(200,169,81,.18),0_0_24px_rgba(200,169,81,.10)]"></div>
+
+  <!-- logo -->
+     <img
+      src="assets/img/logo.svg"
+      alt="Bali: The Sacred Veil logo"
+      class="relative z-[1] w-full h-full object-cover scale-[1.35]"
+      loading="eager"
+      decoding="async"
+   />
+</div>
+          <div class="leading-tight">
+            <div class="font-serif tracking-wide">Nusantara Bali Heritage</div>
+            <div class="text-xs text-ash/60 -mt-0.5" data-i18n="nav.brandSub">Budaya Bali Keunikan & Identitas Nusantara</div>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-2 pr-3">
+
+          <button id="audioBtn"
+            class="rounded-xl border border-gold/15 bg-obsidian/50 px-3 py-2 text-sm text-ash/90 hover:border-gold/35 transition">
+            <span id="audioLabel" class="text-gold">Audio Off</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <audio id="bgAudio" preload="auto" loop>
+    <source src="assets/audio/Lagu Daerah Bali.mp3" type="audio/mpeg" />
+  </audio>
+
+  <main class="relative z-[10] pt-28">
+    <section class="relative py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <a href="index.html#overview"
+          class="reveal inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30">
+          ← <span data-i18n="common.back">Kembali ke Perjalanan</span>
+        </a>
+
+        <div class="mt-6 max-w-3xl">
+          <p class="reveal text-gold/90 tracking-[0.18em] uppercase text-xs">Rituals Beyond Time</p>
+          <h1 class="reveal mt-3 font-serif text-3xl sm:text-5xl tracking-wide">Ritual Bali (Budaya & Makna)</h1>
+          <p class="reveal mt-5 text-ash/80 leading-relaxed">
+            Dalam budaya Bali, ritual bukan sekadar peristiwa seremonial.
+            Ia adalah cara masyarakat menjaga hubungan antara manusia, alam, dan dimensi spiritual—sebuah praktik hidup yang diwariskan dalam tradisi Nusantara.
+
+            Halaman ini membahas ritual-ritual Bali melalui makna, konteks sosial, dan etika budaya, tanpa menghilangkan penghormatannya.
+          </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <article
+            class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 overflow-hidden shadow-deep hover:border-gold/35 transition">
+            <div class="relative h-44 overflow-hidden">
+              <div
+                class="absolute inset-0 bg-[url('assets/img/ritual-ngaben.jpg')] bg-cover bg-center opacity-70 slow-zoom">
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+              <div class="absolute bottom-4 left-5">
+                <h2 class="font-serif text-2xl tracking-wide">Ngaben</h2>
+                <p class="text-xs text-ash/70 mt-1">Visual simbolik, disajikan dengan hormat</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-ash/75 leading-relaxed">
+                Upacara pelepasan, penataan kembali, dan penghormatan pada perjalanan jiwa.
+              </p>
+              <a class="mt-5 inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30"
+                href="dance-detail.html?dance=ngaben">
+                <span data-i18n="common.readMore">Baca Selengkapnya</span> →
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 overflow-hidden shadow-deep hover:border-gold/35 transition">
+            <div class="relative h-44 overflow-hidden">
+              <div
+                class="absolute inset-0 bg-[url('assets/img/ritual-galungan.jpg')] bg-cover bg-center opacity-70 slow-zoom">
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+              <div class="absolute bottom-4 left-5">
+                <h2 class="font-serif text-2xl tracking-wide">Galungan & Kuningan</h2>
+                <p class="text-xs text-ash/70 mt-1">Visual simbolik, disajikan dengan hormat</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-ash/75 leading-relaxed">
+                Perayaan kemenangan dharma—kembalinya harmoni dalam tatanan semesta.
+              </p>
+              <a class="mt-5 inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30"
+                href="dance-detail.html?dance=galungan-kuningan">
+                <span data-i18n="common.readMore">Baca Selengkapnya</span> →
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <footer class="mt-16 pb-10 text-center text-sm text-ash/55">
+          <div class="mx-auto max-w-3xl px-4">
+            <div class="footer-line mb-6"></div>
+            <p class="leading-relaxed">
+              © <span id="year"></span> <span class="text-ash/70">Nusantara Bali Heritage</span> — Smartone.
+            </p>
+            <p class="mt-2 text-xs text-ash/45 leading-relaxed">
+              Presented with cultural respect. Visuals may be symbolic. Avoids modification of sacred symbols and
+              sensational framing.
+            </p>
+          </div>
+        </footer>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/publish.js"></script>
+
+</body>
+
+</html>

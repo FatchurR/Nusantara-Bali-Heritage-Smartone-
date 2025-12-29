@@ -1,0 +1,38 @@
+/* Cinematic grain layer */
+.grain {
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: .12;
+}
+
+/* Soft ambient smoke overlay (subtle) */
+.smoke {
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 50% 40%, rgba(234,234,234,.05) 0%, rgba(11,11,11,0) 65%),
+    radial-gradient(50% 40% at 30% 60%, rgba(234,234,234,.04) 0%, rgba(11,11,11,0) 70%),
+    radial-gradient(50% 40% at 70% 70%, rgba(234,234,234,.035) 0%, rgba(11,11,11,0) 75%);
+  filter: blur(10px);
+  animation: drift 18s ease-in-out infinite alternate;
+  opacity: .55;
+}
+
+@keyframes drift {
+  from { transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
+  to   { transform: translate3d( 1.5%,  1%, 0) scale(1.04); }
+}
+
+/* Reveal animation */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 900ms ease, transform 900ms ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Slow zoom */
+.slow-zoom { animation: slowzoom 12s ease-in-out infinite alternate; }
+@keyframes slowzoom { from { transform: scale(1.02); } to { transform: scale(1.05);} }
+
+@media (prefers-reduced-motion: reduce) {
+  .smoke, .slow-zoom { animation: none !important; }
+  .reveal { transition: opacity 400ms ease !important; transform: none !important; }
+}

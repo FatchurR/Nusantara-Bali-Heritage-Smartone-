@@ -1,0 +1,59 @@
+/* ---------------------------
+   Publish Polish (global)
+   - Typography rhythm
+   - Better focus/hover
+   - Page fade transitions
+   - Consistent container spacing
+--------------------------- */
+
+:root{
+  --ring: rgba(200,169,81,.35);
+  --ring2: rgba(200,169,81,.18);
+}
+
+/* Better base readability */
+html { scroll-behavior: smooth; }
+body { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+
+/* More cinematic paragraph width on article pages */
+.prose-safe p { max-width: 70ch; }
+.prose-safe li { max-width: 70ch; }
+
+/* Better links */
+a { text-underline-offset: 4px; }
+a:focus-visible, button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring2), 0 0 0 1px var(--ring);
+  border-radius: 14px;
+}
+
+/* Subtle hover lift for cards */
+.card-lift { transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+.card-lift:hover { transform: translateY(-2px); }
+
+/* Header polish: reduced height on small screens */
+@media (max-width: 640px) {
+  .header-tight { padding-top: .25rem; padding-bottom: .25rem; }
+}
+
+/* Page fade transitions */
+.page-fade {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+.page-fade.is-ready { opacity: 1; transform: translateY(0); }
+
+a[data-nav], button[data-nav] { cursor: pointer; }
+
+/* Footer separator */
+.footer-line {
+  background: linear-gradient(90deg, rgba(200,169,81,.00), rgba(200,169,81,.18), rgba(200,169,81,.00));
+  height: 1px;
+}
+
+/* Reduce motion safety */
+@media (prefers-reduced-motion: reduce) {
+  .card-lift:hover { transform: none; }
+  .page-fade { transition: opacity 250ms ease; transform: none; }
+}
