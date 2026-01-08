@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,9 +12,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/smartone.jpeg">
 
 
-  <meta name="description" content="Website edukasi budaya Bali yang sinematik: ritual, tarian, pura, kosmologi, dan misteri—disajikan dengan etika budaya." />
+  <meta name="description"
+    content="Website edukasi budaya Bali yang sinematik: ritual, tarian, pura, kosmologi, dan misteri—disajikan dengan etika budaya." />
   <meta property="og:title" content="Bali: The Sacred Veil" />
-  <meta property="og:description" content="Cinematic cultural journey: rituals, dances, temples, and living mystery—presented ethically." />
+  <meta property="og:description"
+    content="Cinematic cultural journey: rituals, dances, temples, and living mystery—presented ethically." />
   <meta property="og:image" content="assets/img/og.jpg" />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -44,7 +47,7 @@
 
   <link rel="stylesheet" href="assets/css/base.css" />
 
-  <!-- WebSite structured data -->
+  <!-- JSON-LD: data struktur situs buat SEO & crawler, biar gampang dimengerti. -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -61,54 +64,61 @@
 </head>
 
 <body class="bg-obsidian text-ash font-sans selection:bg-gold/20 selection:text-ash">
+  <!-- Skip link: loncat langsung ke konten utama — buat aksesibilitas, simple. -->
+  <a href="#overview" class="skip-link">Langsung ke konten utama</a>
+
+  <!-- Progress bar saat scroll — liat progress halamanmu, lowkey membantu. -->
+  <div id="scrollProgress" class="scroll-progress"></div>
+
   <div class="fixed inset-0 grain z-[1]"></div>
 
-  <!-- Header (shared) -->
+  <!-- Header (dipakai di semua halaman) — logo + audio toggle, chill. -->
   <header class="fixed top-0 left-0 right-0 z-[60]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="mt-4 flex items-center justify-between rounded-2xl bg-obsidian/55 backdrop-blur-md border border-gold/15 shadow-deep">
+      <div
+        class="mt-4 flex items-center justify-between rounded-2xl bg-obsidian/55 backdrop-blur-md border border-gold/15 shadow-deep">
         <a href="index.html" class="flex items-center gap-3 px-4 py-3">
-          <div class="relative h-10 w-10 sm:h-11 sm:w-11 rounded-2xl border border-gold/30 bg-obsidian/40 overflow-hidden">
-  <!-- glow frame -->
-  <div class="absolute inset-0 rounded-2xl shadow-[0_0_0_1px_rgba(200,169,81,.18),0_0_24px_rgba(200,169,81,.10)]"></div>
+          <div
+            class="relative h-10 w-10 sm:h-11 sm:w-11 rounded-2xl border border-gold/30 bg-obsidian/40 overflow-hidden">
+            <!-- bingkai glow biar logo kelihatan lebih kece. -->
+            <div
+              class="absolute inset-0 rounded-2xl shadow-[0_0_0_1px_rgba(200,169,81,.18),0_0_24px_rgba(200,169,81,.10)]">
+            </div>
 
-  <!-- logo -->
-     <img
-      src="assets/img/logo.svg"
-      alt="Bali: The Sacred Veil logo"
-      class="relative z-[1] w-full h-full object-cover scale-[1.35]"
-      loading="eager"
-      decoding="async"
-   />
-</div>
+            <!-- logo: identitas visual — jangan ganti sembarangan. -->
+            <img src="assets/img/logo.svg" alt="Bali: The Sacred Veil logo"
+              class="relative z-[1] w-full h-full object-cover scale-[1.35]" loading="eager" decoding="async" />
+          </div>
 
           <div class="leading-tight">
-            <div class="font-serif tracking-wide" data-i18n="seo.siteName">Nusantara Bali Hertiage</div>
-            <div>Budaya Bali Keunikan & Identitas Nusantara</div>
+            <div class="font-serif tracking-wide" data-i18n="seo.siteName">Nusantara Bali Heritage</div>
+            <div class="text-xs text-ash/60 -mt-0.5 brand-subtitle-mobile-hide">Budaya Bali Keunikan & Identitas
+              Nusantara</div>
           </div>
         </a>
 
         <div class="flex items-center gap-2 pr-3">
-
-  <button id="audioBtn"
-    class="rounded-xl border border-gold/15 bg-obsidian/50 px-3 py-2 text-sm text-ash/90 hover:border-gold/35 transition">
-    <span id="audioLabel" class="text-gold">Audio Off</span>
-  </button>
-</div>
+          <button id="audioBtn"
+            class="rounded-xl border border-gold/15 bg-obsidian/50 px-3 py-2 text-sm text-ash/90 hover:border-gold/35 transition">
+            <span id="audioLabel" class="text-gold">Audio Off</span>
+          </button>
+        </div>
 
       </div>
     </div>
   </header>
+  
 
   <audio id="bgAudio" preload="auto" loop>
     <source src="assets/audio/Lagu Daerah Bali.mp3" type="audio/mpeg" />
   </audio>
 
-   <main data-page class="page-fade relative z-[10]">
-    <!-- LANDING -->
-    <section id="landing" class="relative min-h-[100svh] overflow-hidden">
+  <main data-page class="page-fade relative z-[10]">
+    <!-- Landing hero: intro cinematic, set mood. -->
+    <section id="landing" class="relative min-h-screen overflow-hidden flex items-center">
       <div class="absolute inset-0">
-        <video class="h-full w-full object-cover opacity-70" autoplay muted loop playsinline poster="assets/video/landing-poster.jpg">
+        <video class="h-full w-full object-cover opacity-70" autoplay muted loop playsinline
+          poster="assets/video/landing-poster.jpg">
           <source src="assets/video/bali.mp4" type="video/mp4" />
         </video>
         <div class="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/70 to-obsidian"></div>
@@ -118,89 +128,429 @@
         <div class="smoke absolute inset-0"></div>
       </div>
 
-      <div class="relative pt-28 sm:pt-32">
+      <!-- particle vibes — ambience floating, biar nggak flat. -->
+      <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+
+      <div class="relative w-full">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="max-w-3xl">
-            <p class="reveal text-gold/90 tracking-[0.18em] uppercase text-xs" data-i18n="index.kicker">A sacred journey through Bali</p>
-            <h1 class="reveal mt-4 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-wide">
-              <span data-i18n="index.title1">Bali dalam Nusantara.</span><br/>
-              <span class="text-gold" data-i18n="index.title2">Warisan Budaya yang Tidak Pernah Diam.</span>
+            <p class="reveal text-gold/90 tracking-[0.18em] uppercase text-xs text-shadow-subtle"
+              data-i18n="index.kicker">A sacred journey through Bali</p>
+            <h1 class="reveal mt-4 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-wide text-shadow-hero">
+              <span data-i18n="index.title1">Bali dalam Nusantara.</span><br />
+              <span class="text-gold text-glow-gold" data-i18n="index.title2">Warisan Budaya yang Tidak Pernah
+                Diam.</span>
             </h1>
             <p class="reveal mt-6 text-ash/80 text-base sm:text-lg leading-relaxed" data-i18n="index.sub">
-              Melangkahlah melewati tirai sakral. Rasakan Bali sebagai keseimbangan, simbol, ritual, tarian, dan misteri yang hidup.
+              Melangkahlah melewati tirai sakral. Rasakan Bali sebagai keseimbangan, simbol, ritual, tarian, dan misteri
+              yang hidup.
             </p>
 
             <div class="reveal mt-8 flex flex-wrap items-center gap-3">
-              <a href="#overview" class="group inline-flex items-center gap-3 rounded-2xl border border-gold/25 bg-obsidian/35 px-5 py-3 shadow-glow hover:border-gold/55 transition">
+              <a href="#overview"
+                class="btn-shimmer btn-glow magnetic-btn glow-pulse group inline-flex items-center gap-3 rounded-2xl border border-gold/25 bg-obsidian/35 px-5 py-3 shadow-glow transition">
                 <span class="font-medium" data-i18n="index.ctaStart">Mulai Perjalanan</span>
                 <span class="text-gold group-hover:translate-x-0.5 transition">→</span>
               </a>
-              <a href="rituals.html" class="inline-flex items-center gap-2 rounded-2xl border border-gold/15 bg-obsidian/25 px-5 py-3 hover:border-gold/35 transition">
+
+              <a href="rituals.html"
+                class="btn-glow ripple inline-flex items-center gap-2 rounded-2xl border border-gold/15 bg-obsidian/25 px-5 py-3 transition">
                 <span class="text-sm text-ash/85" data-i18n="index.ctaRituals">Masuk ke Rituals</span>
               </a>
             </div>
           </div>
         </div>
       </div>
+      </div>
+
+      <!-- scroll indicator: clue kecil buat nge-scroll, hihi. -->
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
     </section>
 
-    <!-- OVERVIEW: entry points (storytelling preserved) -->
+    <!-- Overview: pilih bab perjalanan — cerita tetap original, pick your vibe. -->
     <section id="overview" class="relative py-20 sm:py-28">
       <div class="absolute inset-0 bg-gradient-to-b from-obsidian to-stone/20"></div>
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
           <p class="reveal text-gold/90 tracking-[0.18em] uppercase text-xs">Chapters</p>
           <h2 class="reveal mt-3 font-serif text-3xl sm:text-5xl tracking-wide">Pilih Bab Perjalanan</h2>
+
+          <!-- Intro narasi: set konteks & feel, santai tapi meaningful. -->
+          <div class="reveal story-quote mt-5">
+            Setiap budaya adalah cerita. Di Bali, cerita itu hidup — dalam tarian yang mengalir, ritual yang
+            menggetarkan, dan arsitektur yang berbicara. Pilih bab Anda, mulai perjalanan.
+          </div>
+
           <p class="reveal mt-5 text-ash/80 leading-relaxed">
             Budaya Bali tersusun dari lapisan-lapisan makna.
-            Setiap ritual, tarian, dan ruang suci saling terhubung sebagai bagian dari tatanan Nusantara yang lebih luas.
+            Setiap ritual, tarian, dan ruang suci saling terhubung sebagai bagian dari tatanan Nusantara yang lebih
+            luas.
           </p>
         </div>
 
         <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <a href="rituals.html" class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep hover:border-gold/35 transition">
+          <!-- Kartu: Rituals — klik buat explore lebih dalem. -->
+          <a href="rituals.html"
+            class="reveal-stagger stagger-1 card-tilt rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep hover:border-gold/35 hover-glow card-3d card-hover-lift transition group">
+            <div class="icon-badge group-hover:scale-110 transition-transform">🕯️</div>
             <div class="font-serif text-2xl">Rituals</div>
-            <p class="mt-2 text-ash/70 text-sm leading-relaxed">Ngaben, Galungan, Kuningan — makna, konteks, etika.</p>
-            <div class="mt-4 text-sm text-gold/90 underline underline-offset-4 decoration-gold/30">Open →</div>
+            <p class="mt-2 text-ash/70 text-sm leading-relaxed">
+              <span class="term" data-tooltip="Upacara pelepasan jiwa">Ngaben</span>,
+              <span class="term" data-tooltip="Hari raya kemenangan dharma">Galungan</span>,
+              <span class="term" data-tooltip="Hari puncak Galungan">Kuningan</span> — makna, konteks, etika.
+            </p>
+            <div
+              class="mt-4 text-sm text-gold/90 underline underline-offset-4 decoration-gold/30 group-hover:text-gold transition">
+              Jelajahi →</div>
           </a>
 
-          <a href="dance-detail.html?dance=kecak" class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep hover:border-gold/35 transition">
+          <!-- Kartu: Dances — pulse budaya & tarian. -->
+          <a href="dance-detail.html?dance=kecak"
+            class="reveal-stagger stagger-2 card-tilt rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep hover:border-gold/35 hover-glow card-3d card-hover-lift transition group">
+            <div class="icon-badge group-hover:scale-110 transition-transform">💃</div>
             <div class="font-serif text-2xl">Dances</div>
-            <p class="mt-2 text-ash/70 text-sm leading-relaxed">Kecak, Barong, Legong — bahasa simbol dan energi.</p>
-            <div class="mt-4 text-sm text-gold/90 underline underline-offset-4 decoration-gold/30">Open →</div>
+            <p class="mt-2 text-ash/70 text-sm leading-relaxed">
+              <span class="term" data-tooltip="Tarian koor tanpa musik">Kecak</span>,
+              <span class="term" data-tooltip="Tarian dua kekuatan">Barong</span>,
+              <span class="term" data-tooltip="Tarian klasik anggun">Legong</span> — bahasa simbol dan energi.
+            </p>
+            <div
+              class="mt-4 text-sm text-gold/90 underline underline-offset-4 decoration-gold/30 group-hover:text-gold transition">
+              Jelajahi →</div>
           </a>
 
-          <a href="temples.html" class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep hover:border-gold/35 transition">
+          <!-- Kartu: Temples — arsitektur sebagai kosmologi, cekidot. -->
+          <a href="temples.html"
+            class="reveal-stagger stagger-3 card-tilt rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep hover:border-gold/35 hover-glow card-3d card-hover-lift transition group">
+            <div class="icon-badge group-hover:scale-110 transition-transform">🏛️</div>
             <div class="font-serif text-2xl">Temples</div>
-            <p class="mt-2 text-ash/70 text-sm leading-relaxed">Arsitektur sebagai kosmologi — mandala, gerbang, ruang.</p>
-            <div class="mt-4 text-sm text-gold/90 underline underline-offset-4 decoration-gold/30">Open →</div>
+            <p class="mt-2 text-ash/70 text-sm leading-relaxed">
+              Arsitektur sebagai <span class="term" data-tooltip="Gambaran tata ruang semesta">kosmologi</span> —
+              <span class="term" data-tooltip="Pola pengaturan ruang">mandala</span>, gerbang, ruang.
+            </p>
+            <div
+              class="mt-4 text-sm text-gold/90 underline underline-offset-4 decoration-gold/30 group-hover:text-gold transition">
+              Jelajahi →</div>
           </a>
 
-          <a href="map.html" class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep hover:border-gold/35 transition">
+          <!-- Kartu: Map — peta interaktif buat jelajah wilayah. -->
+          <a href="map.html"
+            class="reveal-stagger stagger-4 card-tilt rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep hover:border-gold/35 hover-glow card-3d card-hover-lift transition group">
+            <div class="icon-badge group-hover:scale-110 transition-transform">🗺️</div>
             <div class="font-serif text-2xl">Map</div>
-            <p class="mt-2 text-ash/70 text-sm leading-relaxed">Peta interaktif untuk eksplorasi wilayah dan cerita.</p>
-            <div class="mt-4 text-sm text-gold/90 underline underline-offset-4 decoration-gold/30">Open →</div>
+            <p class="mt-2 text-ash/70 text-sm leading-relaxed">
+              Peta interaktif untuk eksplorasi wilayah dan cerita budaya Bali dari barat hingga timur.
+            </p>
+            <div
+              class="mt-4 text-sm text-gold/90 underline underline-offset-4 decoration-gold/30 group-hover:text-gold transition">
+              Jelajahi →</div>
           </a>
+         <a href="games.html"
+   class="reveal lg:col-span-4 rounded-3xl border border-gold/15 bg-obsidian/55 p-6 sm:p-7 shadow-deep hover:border-gold/35 transition relative overflow-hidden">
+  <!-- subtle glow / pattern — efek visual halus di background. -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.10]">
+    <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl"></div>
+    <div class="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl"></div>
+  </div>
+
+  <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+    <!-- Left: teks utama & deskripsi singkat — baca dulu, plis. -->
+    <div class="lg:col-span-7">
+      <div class="flex items-center gap-3">
+        <div class="h-11 w-11 rounded-2xl border border-gold/20 bg-obsidian/35 grid place-items-center shadow-[0_0_0_1px_rgba(200,169,81,.10),0_0_18px_rgba(200,169,81,.10)]">
+          <span class="text-gold text-lg" aria-hidden="true">🎮</span>
+        </div>
+        <div>
+          <div class="font-serif text-2xl sm:text-3xl">Quiz Journey</div>
+          <p class="mt-1 text-sm text-ash/70">
+            Map → Quiz • West / Central / East Bali
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-4 text-ash/75 leading-relaxed max-w-2xl">
+        Main sambil belajar: pilih wilayah, jawab kuis, kumpulkan poin, dan dapatkan penjelasan singkat setelah tiap jawaban.
+        Dirancang agar terasa sinematik, tetap sopan secara budaya, dan bikin kamu “tenggelam” dalam konteks.
+      </p>
+
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        <span class="inline-flex items-center gap-2 rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75">
+          🧿 Nyawa & Score Animasi
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75">
+          🏆 High Score (local)
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75">
+          🔊 SFX Gamelan Click
+        </span>
+      </div>
+    </div>
+
+    <!-- Right: CTA & preview highscore — tombol play, gaskeun. -->
+    <div class="lg:col-span-5">
+      <div class="rounded-3xl border border-gold/10 bg-obsidian/35 p-5">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs text-ash/60">Mode</div>
+            <div class="mt-1 font-medium text-ash/90">Multi-level wilayah</div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-ash/60">High Score</div>
+            <div id="hsPreview" class="mt-1 text-gold font-semibold">—</div>
+          </div>
         </div>
 
-       <footer class="mt-16 pb-10 text-center text-sm text-ash/55">
-  <div class="mx-auto max-w-3xl px-4">
-    <div class="footer-line mb-6"></div>
-    <p class="leading-relaxed">
-      © <span id="year"></span> <span class="text-ash/70">Nusantara Bali Heritage</span> — Smartone.
-    </p>
-    <p class="mt-2 text-xs text-ash/45 leading-relaxed">
-      Presented with cultural respect. Visuals may be symbolic. Avoids modification of sacred symbols and sensational framing.
-    </p>
+        <div class="mt-4 grid grid-cols-3 gap-2">
+          <div class="rounded-2xl border border-gold/10 bg-obsidian/40 p-3 text-center">
+            <div class="text-xs text-ash/60">West</div>
+            <div class="mt-1 text-sm text-ash/80">Ritual</div>
+          </div>
+          <div class="rounded-2xl border border-gold/10 bg-obsidian/40 p-3 text-center">
+            <div class="text-xs text-ash/60">Central</div>
+            <div class="mt-1 text-sm text-ash/80">Mandala</div>
+          </div>
+          <div class="rounded-2xl border border-gold/10 bg-obsidian/40 p-3 text-center">
+            <div class="text-xs text-ash/60">East</div>
+            <div class="mt-1 text-sm text-ash/80">Dharma</div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-xs text-ash/55">Klik untuk mulai bermain</span>
+          <span class="inline-flex items-center gap-2 rounded-2xl border border-gold/25 bg-obsidian/45 px-4 py-2 text-sm text-gold/95 hover:border-gold/45 transition">
+            Play <span aria-hidden="true">→</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+
+<script>
+  // Optional: preview highscore di kartu (cocokkan kunci dari games.js)
+  (function(){
+    const HS_KEY = "nbh_highscore_v1";
+    const el = document.getElementById("hsPreview");
+    if (!el) return;
+    try{
+      const hs = JSON.parse(localStorage.getItem(HS_KEY)) || { global:0 };
+      el.textContent = String(hs.global ?? 0);
+    }catch(e){
+      el.textContent = "0";
+    }
+  })();
+</script>
+
+
+        </div>
+        
+
+        <!-- Quick Concepts Reference -->
+        <div class="reveal mt-12 rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep">
+          <h3 class="font-serif text-xl text-ash mb-4">📚 Konsep Kunci untuk Memahami Bali</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="dance-detail.html?dance=sekala-niskala"
+              class="rounded-2xl border border-gold/10 bg-obsidian/35 p-4 hover-glow transition group">
+              <div class="flex items-center gap-3">
+                <span class="icon-badge text-sm">👁️</span>
+                <div>
+                  <div class="text-gold/90 font-medium group-hover:text-gold transition">
+                    <span class="term" data-tooltip="Yang terlihat">Sekala</span> & <span class="term"
+                      data-tooltip="Yang tak terlihat">Niskala</span>
+                  </div>
+                  <p class="text-xs text-ash/60 mt-1">Dua dimensi realitas</p>
+                </div>
+              </div>
+            </a>
+            <a href="dance-detail.html?dance=tri-hita-karana"
+              class="rounded-2xl border border-gold/10 bg-obsidian/35 p-4 hover-glow transition group">
+              <div class="flex items-center gap-3">
+                <span class="icon-badge text-sm">☯️</span>
+                <div>
+                  <div class="text-gold/90 font-medium group-hover:text-gold transition">
+                    <span class="term" data-tooltip="Tiga penyebab kebahagiaan">Tri Hita Karana</span>
+                  </div>
+                  <p class="text-xs text-ash/60 mt-1">Harmoni sebagai praktik</p>
+                </div>
+              </div>
+            </a>
+            <a href="dance-detail.html?dance=ruwa-bineda"
+              class="rounded-2xl border border-gold/10 bg-obsidian/35 p-4 hover-glow transition group">
+              <div class="flex items-center gap-3">
+                <span class="icon-badge text-sm">⚖️</span>
+                <div>
+                  <div class="text-gold/90 font-medium group-hover:text-gold transition">
+                    <span class="term" data-tooltip="Konsep dualitas dan keseimbangan">Ruwa Bineda</span>
+                  </div>
+                  <p class="text-xs text-ash/60 mt-1">Dualitas yang seimbang</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        
+        <footer class="mt-16 pb-10">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="relative overflow-hidden rounded-[28px] border border-gold/15 bg-obsidian/55 backdrop-blur-xl shadow-deep">
+      <!-- soft glow -->
+      <div class="pointer-events-none absolute inset-0">
+        <div class="absolute -top-28 -left-28 h-80 w-80 rounded-full bg-gold/10 blur-3xl"></div>
+        <div class="absolute -bottom-28 -right-28 h-80 w-80 rounded-full bg-gold/10 blur-3xl"></div>
+        <div class="absolute inset-0 [mask-image:radial-gradient(60%_120%_at_50%_0%,black,transparent)] bg-gold/10"></div>
+      </div>
+
+      <div class="relative p-6 sm:p-8">
+        <!-- Top: closing line + actions -->
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="text-gold/90 tracking-[0.18em] uppercase text-[11px]">End of Journey</p>
+            <h3 class="mt-2 font-serif text-2xl sm:text-3xl tracking-wide">
+              Bali tak hanya dibaca — ia dirasakan, dipahami, lalu dihormati.
+            </h3>
+            <p class="mt-3 text-ash/70 leading-relaxed">
+              Terima kasih sudah berjalan sampai akhir. Jika Anda ingin memperdalam, lanjutkan ke bab pilihan atau uji pemahaman lewat Quiz Journey.
+            </p>
+
+            <!-- Mini nav -->
+            <nav class="mt-5 flex flex-wrap gap-2" aria-label="Footer navigation">
+              <a href="rituals.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Rituals</a>
+              <a href="dance-detail.html?dance=kecak" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Dances</a>
+              <a href="temples.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Temples</a>
+              <a href="map.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Map</a>
+              <a href="game.html" class="rounded-full border border-gold/20 bg-obsidian/40 px-3 py-1.5 text-xs text-gold/90 hover:border-gold/45 transition">Quiz Journey</a>
+            </nav>
+          </div>
+
+          <div class="lg:w-[360px]">
+            <!-- Journey progress -->
+            <div class="rounded-3xl border border-gold/10 bg-obsidian/35 p-5">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <div class="text-xs text-ash/60">Progress Perjalanan</div>
+                  <div class="mt-1 font-medium text-ash/90">
+                    <span id="journeyPercent">0</span>% Selesai
+                  </div>
+                </div>
+
+                <button id="copyLinkBtn"
+                  type="button"
+                  class="rounded-2xl border border-gold/15 bg-obsidian/45 px-3 py-2 text-xs text-ash/80 hover:border-gold/35 transition">
+                  Salin link
+                </button>
+              </div>
+
+              <div class="mt-4 h-2 w-full rounded-full bg-obsidian/50 border border-gold/10 overflow-hidden">
+                <div id="journeyBar" class="h-full w-0 bg-gradient-to-r from-gold/30 via-gold/50 to-gold/30"></div>
+              </div>
+
+              <!-- CTA -->
+              <div class="mt-5 flex items-center gap-2">
+                <a href="https://github.com/FatchurR/Nusantara-Bali-Heritage-Smartone-"
+                  target="_blank" rel="noopener"
+                  class="flex-1 text-center rounded-2xl border border-gold/25 bg-obsidian/45 px-4 py-2 text-sm text-gold/95 hover:border-gold/45 transition">
+                  Kunjungi GitHub →
+                </a>
+                <button id="toTopBtn"
+                  type="button"
+                  class="rounded-2xl border border-gold/15 bg-obsidian/35 px-4 py-2 text-sm text-ash/85 hover:border-gold/35 transition"
+                  aria-label="Back to top">
+                  ↑
+                </button>
+              </div>
+
+              <p class="mt-3 text-[11px] text-ash/55 leading-relaxed">
+                Disajikan secara edukatif, fokus pada makna, konteks, dan rasa hormat.
+              </p>
+            </div>
+
+            <!-- Social -->
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-ash/60">Ikuti Kami</div>
+              <div class="flex items-center gap-2">
+                <!-- GitHub -->
+                <a href="https://github.com/FatchurR/Nusantara-Bali-Heritage-Smartone-" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="GitHub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.59 2 12.253c0 4.53 2.865 8.383 6.839 9.74.5.096.682-.22.682-.49 0-.242-.009-.884-.014-1.736-2.782.615-3.369-1.37-3.369-1.37-.454-1.18-1.11-1.495-1.11-1.495-.908-.636.069-.623.069-.623 1.004.073 1.532 1.055 1.532 1.055.892 1.56 2.341 1.11 2.91.848.091-.665.35-1.11.636-1.366-2.22-.26-4.555-1.135-4.555-5.05 0-1.115.39-2.026 1.03-2.74-.103-.26-.446-1.31.098-2.73 0 0 .84-.275 2.75 1.047A9.3 9.3 0 0 1 12 7.07c.85.004 1.705.117 2.505.344 1.909-1.322 2.748-1.047 2.748-1.047.545 1.42.202 2.47.1 2.73.64.714 1.028 1.625 1.028 2.74 0 3.926-2.338 4.786-4.566 5.042.36.317.68.944.68 1.904 0 1.375-.012 2.484-.012 2.82 0 .273.18.592.688.49C19.138 20.632 22 16.78 22 12.253 22 6.59 17.523 2 12 2Z"
+                          fill="rgba(234,234,234,.85)"/>
+                  </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/rfein2/" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="Instagram">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M17.8 6.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+                          fill="rgba(234,234,234,.85)"/>
+                  </svg>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@smartonesda" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="YouTube">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.6 31.6 0 0 0 2 12s.1 3 .4 4.8a3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1c.3-1.8.4-4.8.4-4.8s0-3-.4-4.8Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="rgba(11,11,11,.85)"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom line -->
+        <div class="mt-8 pt-6 border-t border-gold/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="text-xs text-ash/55">
+            © <span id="year"></span> <span class="text-ash/70">Nusantara Bali Heritage</span>
+          </div>
+          <div class="text-xs text-ash/55">
+            <span class="text-ash/70">Smartone Software Engineer</span> — Fatchur Rochman
+          </div>
+        </div>
+
+        <!-- Toast (copy link) -->
+        <div id="toast"
+             class="pointer-events-none opacity-0 translate-y-2 transition fixed left-1/2 -translate-x-1/2 bottom-6 z-[80]
+                    rounded-2xl border border-gold/15 bg-obsidian/85 px-4 py-2 text-sm text-ash/80 shadow-deep">
+          Link copied.
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
+
 
       </div>
     </section>
   </main>
 
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Kembali ke atas">↑</button>
+
   <script src="assets/js/app.js"></script>
   <script src="assets/js/publish.js"></script>
 
 </body>
+
 </html>

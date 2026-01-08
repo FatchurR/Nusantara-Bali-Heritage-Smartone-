@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Journey — Nusantara Bali Heritage</title>
+  <meta name="description" content="Game kuis budaya Bali: pilih wilayah (West/Central/East), kumpulkan poin, jaga nyawa, dan pelajari makna budaya secara edukatif." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors:{obsidian:"#0B0B0B",gold:"#C8A951",ash:"#EAEAEA",stone:"#2A2A2A"},
+      fontFamily:{serif:["ui-serif","Georgia","Times New Roman","serif"],sans:["ui-sans-serif","system-ui","Segoe UI","Roboto","Arial","sans-serif"]},
+      boxShadow:{deep:"0 20px 60px rgba(0,0,0,.55)",glow:"0 0 0 1px rgba(200,169,81,.25), 0 0 24px rgba(200,169,81,.12)"}
+    } } }
+  </script>
+
+  <!-- Base dulu, lalu publish polish — urutan stylesheet biar rapih. -->
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/publish.css" />
+
+  <style>
+    /* HUD micro-anim */
+    .pop { animation: pop .18s ease-out; }
+    @keyframes pop { from{ transform: scale(.92); } to{ transform: scale(1); } }
+
+    .shake { animation: shake .28s ease-in-out; }
+    @keyframes shake {
+      0%,100%{ transform: translateX(0); }
+      25%{ transform: translateX(-4px); }
+      75%{ transform: translateX(4px); }
+    }
+
+    .pulse-soft { animation: pulseSoft 1s ease-in-out infinite; }
+    @keyframes pulseSoft { 0%,100%{ opacity:.9; } 50%{ opacity:1; } }
+
+    .btn-opt { transition: transform .14s ease, border-color .14s ease, background-color .14s ease; }
+    .btn-opt:hover { transform: translateY(-1px); }
+
+    /* Map regions */
+    .region { cursor:pointer; transition: opacity .15s ease, stroke .15s ease, filter .15s ease; opacity:.78; }
+    .region:hover { opacity:1; stroke: rgba(200,169,81,.85); filter: drop-shadow(0 0 12px rgba(200,169,81,.18)); }
+    .region.is-selected { opacity:1; stroke: rgba(200,169,81,.95); filter: drop-shadow(0 0 16px rgba(200,169,81,.22)); }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Quiz Journey — Nusantara Bali Heritage",
+    "description":"Game kuis budaya Bali: pilih wilayah (West/Central/East), kumpulkan poin, jaga nyawa, dan pelajari makna budaya secara edukatif.",
+    "breadcrumb":{
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"index.html"},
+        {"@type":"ListItem","position":2,"name":"Quiz Journey","item":"game.html"}
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-obsidian text-ash font-sans selection:bg-gold/20 selection:text-ash">
+  <div class="fixed inset-0 grain z-[1]" aria-hidden="true"></div>
+
+  <!-- Header shared — konsistensi antar halaman, tetep minimal. -->
+  <header class="fixed top-0 left-0 right-0 z-[60]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mt-4 flex items-center justify-between rounded-2xl bg-obsidian/55 backdrop-blur-md border border-gold/15 shadow-deep">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3" aria-label="Back to Home">
+          <div class="relative h-10 w-10 sm:h-11 sm:w-11 rounded-2xl border border-gold/30 bg-obsidian/40 overflow-hidden">
+            <div class="absolute inset-0 rounded-2xl shadow-[0_0_0_1px_rgba(200,169,81,.18),0_0_24px_rgba(200,169,81,.10)]"></div>
+            <img
+              src="assets/img/logo.svg"
+              alt="Nusantara Bali Heritage logo"
+              class="relative z-[1] w-full h-full object-cover scale-[1.35]"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+
+          <div class="leading-tight">
+            <div class="font-serif tracking-wide">Nusantara Bali Heritage</div>
+            <div class="text-xs text-ash/60 -mt-0.5">Quiz Journey — budaya, makna, dan konteks</div>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-2 pr-3">
+          <button id="audioBtn"
+            type="button"
+            class="rounded-xl border border-gold/15 bg-obsidian/50 px-3 py-2 text-sm text-ash/90 hover:border-gold/35 transition"
+            aria-label="Toggle ambient audio">
+            <span id="audioLabel" class="text-gold">Audio Off</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ambient audio: reuse pola yang sama, biar ambience konsisten. -->
+  <audio id="bgAudio" preload="auto" loop>
+    <source src="assets/audio/Lagu Daerah Bali.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- SFX: tambahin click sound kecil supaya interaksi kerasa satisfying. -->
+  <audio id="sfxClick" preload="auto">
+    <source src="assets/audio/gamelan-click.mp3" type="audio/mpeg" />
+  </audio>
+
+  <main data-page class="page-fade relative z-[10] pt-28">
+    <section class="relative py-14 sm:py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <a href="index.html#overview"
+          class="reveal inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30">
+          ← Kembali ke Perjalanan
+        </a>
+
+        <div class="mt-6 max-w-3xl">
+          <p class="reveal text-gold/90 tracking-[0.18em] uppercase text-xs">Learn by Playing</p>
+          <h1 class="reveal mt-3 font-serif text-3xl sm:text-5xl tracking-wide">Quiz Journey</h1>
+          <p class="reveal mt-5 text-ash/80 leading-relaxed">
+            Pilih wilayah, jawab kuis, dan baca penjelasan singkat di setiap langkah. Ini game edukatif, fokus pada makna dan konteks budaya.
+          </p>
+        </div>
+
+        <!-- HUD: skor, nyawa, region — quick status bar, cek cepat. -->
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Left: Map + level select — pilih wilayah, mulai main. -->
+          <div class="lg:col-span-7 reveal rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep overflow-hidden">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="text-sm text-ash/70">
+                Pilih wilayah (West / Central / East) untuk memulai level.
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="toggleSfx"
+                  class="rounded-xl border border-gold/15 bg-obsidian/40 px-3 py-2 text-xs text-ash/85 hover:border-gold/35 transition">
+                  SFX: <span id="sfxLabel" class="text-gold">On</span>
+                </button>
+                <button id="resetAll"
+                  class="rounded-xl border border-gold/15 bg-obsidian/40 px-3 py-2 text-xs text-ash/85 hover:border-gold/35 transition">
+                  Reset High Score
+                </button>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-2xl border border-gold/10 bg-obsidian/35 overflow-hidden">
+              <!-- Gunakan SVG peta sebagai base, overlay path region clickable (3 wilayah). -->
+              <div class="relative">
+                <!-- Back silhouette: bentuk peta dasar, tinggal tweak kalau perlu. -->
+                <img
+                  src="assets/img/petaBali.svg"
+                  alt="Peta Bali"
+                  class="w-full h-[320px] sm:h-[360px] object-contain opacity-[0.92]"
+                  draggable="false"
+                />
+
+                <!-- Click overlay: 3 region interaktif — edit path agar pas di map asli. -->
+                <svg viewBox="0 0 900 360"
+                     class="absolute inset-0 w-full h-full"
+                     role="img"
+                     aria-label="Map overlay: choose region">
+                  <defs>
+                    <linearGradient id="goldWash" x1="0" x2="1">
+                      <stop offset="0%" stop-color="rgba(200,169,81,.24)"></stop>
+                      <stop offset="100%" stop-color="rgba(200,169,81,.10)"></stop>
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Catatan: sesuaikan atribut d pada path biar bener2 ngepas ke peta, pro tip: zoom in. -->
+                  <path class="region" data-region="west"
+                        d="M95 210 C155 165, 240 160, 300 170 C270 212, 205 236, 145 242 C110 238, 86 228, 95 210 Z"
+                        fill="url(#goldWash)" stroke="rgba(200,169,81,.42)" stroke-width="2"/>
+
+                  <path class="region" data-region="central"
+                        d="M305 170 C380 152, 455 168, 510 190 C470 230, 390 242, 320 232 C300 212, 296 190, 305 170 Z"
+                        fill="url(#goldWash)" stroke="rgba(200,169,81,.42)" stroke-width="2"/>
+
+                  <path class="region" data-region="east"
+                        d="M515 190 C600 185, 700 188, 790 175 C760 230, 660 252, 540 240 C520 228, 512 208, 515 190 Z"
+                        fill="url(#goldWash)" stroke="rgba(200,169,81,.42)" stroke-width="2"/>
+
+                  <text x="140" y="205" fill="rgba(234,234,234,.72)" font-size="14">West</text>
+                  <text x="360" y="195" fill="rgba(234,234,234,.72)" font-size="14">Central</text>
+                  <text x="620" y="220" fill="rgba(234,234,234,.72)" font-size="14">East</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <button class="lvlBtn rounded-2xl border border-gold/15 bg-obsidian/35 p-4 text-left hover:border-gold/35 transition"
+                      data-region="west">
+                <div class="font-serif text-lg">West Bali</div>
+                <div class="text-xs text-ash/70 mt-1">Pesisir, pembersihan simbolik, ritme komunal.</div>
+                <div class="mt-2 text-xs text-gold/90">Play →</div>
+              </button>
+
+              <button class="lvlBtn rounded-2xl border border-gold/15 bg-obsidian/35 p-4 text-left hover:border-gold/35 transition"
+                      data-region="central">
+                <div class="font-serif text-lg">Central Bali</div>
+                <div class="text-xs text-ash/70 mt-1">Ruang, mandala, etika gerak dan sikap.</div>
+                <div class="mt-2 text-xs text-gold/90">Play →</div>
+              </button>
+
+              <button class="lvlBtn rounded-2xl border border-gold/15 bg-obsidian/35 p-4 text-left hover:border-gold/35 transition"
+                      data-region="east">
+                <div class="font-serif text-lg">East Bali</div>
+                <div class="text-xs text-ash/70 mt-1">Keseimbangan, perayaan dharma, tradisi berulang.</div>
+                <div class="mt-2 text-xs text-gold/90">Play →</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Quiz panel — kontrol, opsi, dan penjelasan edukatif. -->
+          <aside class="lg:col-span-5 reveal rounded-3xl border border-gold/15 bg-obsidian/55 p-6 shadow-deep">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h2 class="font-serif text-xl tracking-wide">Panel Quiz</h2>
+                <p class="text-sm text-ash/70 mt-1">
+                  Skor & nyawa tersimpan selama bermain. High score disimpan di browser kamu.
+                </p>
+              </div>
+
+              <div class="text-right">
+                <div class="text-xs text-ash/60">High Score</div>
+                <div class="text-gold font-semibold" id="highScore">0</div>
+              </div>
+            </div>
+
+              <!-- HUD: display wilayah, skor, dan nyawa pemain. -->
+            <div id="hud" class="mt-5 grid grid-cols-3 gap-3">
+              <div class="rounded-2xl border border-gold/10 bg-obsidian/35 p-4">
+                <div class="text-xs text-ash/60">Wilayah</div>
+                <div class="mt-1 font-medium text-ash/90" id="hudRegion">—</div>
+              </div>
+              <div class="rounded-2xl border border-gold/10 bg-obsidian/35 p-4">
+                <div class="text-xs text-ash/60">Score</div>
+                <div class="mt-1 font-semibold text-gold" id="hudScore">0</div>
+              </div>
+              <div class="rounded-2xl border border-gold/10 bg-obsidian/35 p-4">
+                <div class="text-xs text-ash/60">Nyawa</div>
+                <div class="mt-1 flex items-center gap-1.5" id="hudLives" aria-label="Lives"></div>
+              </div>
+            </div>
+
+            <!-- Quiz card -->
+            <div class="mt-5 rounded-3xl border border-gold/10 bg-obsidian/35 p-5">
+              <div class="flex items-center justify-between">
+                <div class="text-xs text-ash/60">
+                  Pertanyaan <span id="qIndex">0</span>/<span id="qTotal">0</span>
+                </div>
+                <button id="btnStart"
+                  class="rounded-xl border border-gold/15 bg-obsidian/40 px-3 py-2 text-xs text-ash/85 hover:border-gold/35 transition">
+                  Mulai
+                </button>
+              </div>
+
+              <h3 class="mt-3 font-serif text-xl leading-snug" id="questionTitle">
+                Pilih wilayah di peta untuk memulai.
+              </h3>
+
+              <div class="mt-4 space-y-2" id="options"></div>
+
+              <!-- Explanation: catatan edukatif singkat setelah jawaban. -->
+              <div id="explainWrap" class="mt-4 hidden">
+                <div class="rounded-2xl border border-gold/10 bg-obsidian/40 p-4">
+                  <div class="text-xs text-ash/60">Catatan Edukatif</div>
+                  <div class="mt-2 text-sm text-ash/80 leading-relaxed" id="explainText"></div>
+                </div>
+
+                <div class="mt-3 flex items-center justify-between">
+                  <button id="btnNext"
+                    class="rounded-2xl border border-gold/20 bg-obsidian/45 px-4 py-2 text-sm text-ash/90 hover:border-gold/45 transition">
+                    Lanjut →
+                  </button>
+                  <a id="learnLink"
+                    class="text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30"
+                    href="rituals.html">
+                    Baca referensi →
+                  </a>
+                </div>
+              </div>
+
+              <!-- End state: hasil akhir level — replay atau balik. -->
+              <div id="endWrap" class="mt-4 hidden">
+                <div class="rounded-2xl border border-gold/10 bg-obsidian/40 p-4">
+                  <div class="text-gold font-semibold" id="endTitle">Selesai</div>
+                  <div class="mt-2 text-sm text-ash/80 leading-relaxed" id="endText"></div>
+                </div>
+
+                <div class="mt-3 flex items-center gap-3">
+                  <button id="btnReplay"
+                    class="rounded-2xl border border-gold/20 bg-obsidian/45 px-4 py-2 text-sm text-ash/90 hover:border-gold/45 transition">
+                    Main Lagi
+                  </button>
+                  <a href="index.html#overview"
+                    class="rounded-2xl border border-gold/15 bg-obsidian/30 px-4 py-2 text-sm text-ash/80 hover:border-gold/35 transition">
+                    Kembali ke Bab
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <p class="mt-4 text-xs text-ash/55 leading-relaxed">
+              Catatan: Quiz dirancang memberikan edukasi ringan dan seru.
+              
+            </p>
+          </aside>
+        </div>
+
+       <footer class="mt-16 pb-10">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="relative overflow-hidden rounded-[28px] border border-gold/15 bg-obsidian/55 backdrop-blur-xl shadow-deep">
+      <!-- soft glow -->
+      <div class="pointer-events-none absolute inset-0">
+        <div class="absolute -top-28 -left-28 h-80 w-80 rounded-full bg-gold/10 blur-3xl"></div>
+        <div class="absolute -bottom-28 -right-28 h-80 w-80 rounded-full bg-gold/10 blur-3xl"></div>
+        <div class="absolute inset-0 [mask-image:radial-gradient(60%_120%_at_50%_0%,black,transparent)] bg-gold/10"></div>
+      </div>
+
+      <div class="relative p-6 sm:p-8">
+        <!-- Top: closing line + actions -->
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="text-gold/90 tracking-[0.18em] uppercase text-[11px]">End of Journey</p>
+            <h3 class="mt-2 font-serif text-2xl sm:text-3xl tracking-wide">
+              Bali tak hanya dibaca — ia dirasakan, dipahami, lalu dihormati.
+            </h3>
+            <p class="mt-3 text-ash/70 leading-relaxed">
+              Terima kasih sudah berjalan sampai akhir. Jika Anda ingin memperdalam, lanjutkan ke bab pilihan atau uji pemahaman lewat Quiz Journey.
+            </p>
+
+            <!-- Mini nav -->
+            <nav class="mt-5 flex flex-wrap gap-2" aria-label="Footer navigation">
+              <a href="rituals.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Rituals</a>
+              <a href="dance-detail.html?dance=kecak" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Dances</a>
+              <a href="temples.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Temples</a>
+              <a href="map.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Map</a>
+              <a href="game.html" class="rounded-full border border-gold/20 bg-obsidian/40 px-3 py-1.5 text-xs text-gold/90 hover:border-gold/45 transition">Quiz Journey</a>
+            </nav>
+          </div>
+
+          <div class="lg:w-[360px]">
+            <!-- Journey progress -->
+            <div class="rounded-3xl border border-gold/10 bg-obsidian/35 p-5">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <div class="text-xs text-ash/60">Progress Perjalanan</div>
+                  <div class="mt-1 font-medium text-ash/90">
+                    <span id="journeyPercent">0</span>% Selesai
+                  </div>
+                </div>
+
+                <button id="copyLinkBtn"
+                  type="button"
+                  class="rounded-2xl border border-gold/15 bg-obsidian/45 px-3 py-2 text-xs text-ash/80 hover:border-gold/35 transition">
+                  Salin link
+                </button>
+              </div>
+
+              <div class="mt-4 h-2 w-full rounded-full bg-obsidian/50 border border-gold/10 overflow-hidden">
+                <div id="journeyBar" class="h-full w-0 bg-gradient-to-r from-gold/30 via-gold/50 to-gold/30"></div>
+              </div>
+
+              <!-- CTA -->
+              <div class="mt-5 flex items-center gap-2">
+                <a href="https://github.com/FatchurR/Nusantara-Bali-Heritage-Smartone-"
+                  target="_blank" rel="noopener"
+                  class="flex-1 text-center rounded-2xl border border-gold/25 bg-obsidian/45 px-4 py-2 text-sm text-gold/95 hover:border-gold/45 transition">
+                  Kunjungi GitHub →
+                </a>
+                <button id="toTopBtn"
+                  type="button"
+                  class="rounded-2xl border border-gold/15 bg-obsidian/35 px-4 py-2 text-sm text-ash/85 hover:border-gold/35 transition"
+                  aria-label="Back to top">
+                  ↑
+                </button>
+              </div>
+
+              <p class="mt-3 text-[11px] text-ash/55 leading-relaxed">
+                Disajikan secara edukatif, fokus pada makna, konteks, dan rasa hormat.
+              </p>
+            </div>
+
+            <!-- Social -->
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-ash/60">Ikuti Kami</div>
+              <div class="flex items-center gap-2">
+                <!-- GitHub -->
+                <a href="https://github.com/FatchurR/Nusantara-Bali-Heritage-Smartone-" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="GitHub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.59 2 12.253c0 4.53 2.865 8.383 6.839 9.74.5.096.682-.22.682-.49 0-.242-.009-.884-.014-1.736-2.782.615-3.369-1.37-3.369-1.37-.454-1.18-1.11-1.495-1.11-1.495-.908-.636.069-.623.069-.623 1.004.073 1.532 1.055 1.532 1.055.892 1.56 2.341 1.11 2.91.848.091-.665.35-1.11.636-1.366-2.22-.26-4.555-1.135-4.555-5.05 0-1.115.39-2.026 1.03-2.74-.103-.26-.446-1.31.098-2.73 0 0 .84-.275 2.75 1.047A9.3 9.3 0 0 1 12 7.07c.85.004 1.705.117 2.505.344 1.909-1.322 2.748-1.047 2.748-1.047.545 1.42.202 2.47.1 2.73.64.714 1.028 1.625 1.028 2.74 0 3.926-2.338 4.786-4.566 5.042.36.317.68.944.68 1.904 0 1.375-.012 2.484-.012 2.82 0 .273.18.592.688.49C19.138 20.632 22 16.78 22 12.253 22 6.59 17.523 2 12 2Z"
+                          fill="rgba(234,234,234,.85)"/>
+                  </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/rfein2/" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="Instagram">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M17.8 6.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+                          fill="rgba(234,234,234,.85)"/>
+                  </svg>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@smartonesda" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="YouTube">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.6 31.6 0 0 0 2 12s.1 3 .4 4.8a3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1c.3-1.8.4-4.8.4-4.8s0-3-.4-4.8Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="rgba(11,11,11,.85)"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom line -->
+        <div class="mt-8 pt-6 border-t border-gold/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="text-xs text-ash/55">
+            © <span id="year"></span> <span class="text-ash/70">Nusantara Bali Heritage</span>
+          </div>
+          <div class="text-xs text-ash/55">
+            <span class="text-ash/70">Smartone Software Engineer</span> — Fatchur Rochman
+          </div>
+        </div>
+
+        <!-- Toast (copy link) -->
+        <div id="toast"
+             class="pointer-events-none opacity-0 translate-y-2 transition fixed left-1/2 -translate-x-1/2 bottom-6 z-[80]
+                    rounded-2xl border border-gold/15 bg-obsidian/85 px-4 py-2 text-sm text-ash/80 shadow-deep">
+          Link copied.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Keep scripts existing: core app + publish handlers. -->
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/publish.js"></script>
+
+  <!-- Game logic: file games.js — aturan kuis & scoring. -->
+  <script src="assets/js/games.js"></script>
+</body>
+</html>

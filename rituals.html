@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smartone - Nusantara Bali Heritage</title>
   <link rel="stylesheet" href="assets/css/publish.css" />
-  <link rel="stylesheet" href="assets/css/publish.css" />
   <link rel="icon" href="assets/img/smartone.png" type="image/x-icon">
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/smartone.png">
@@ -47,6 +46,12 @@
 </head>
 
 <body class="bg-obsidian text-ash font-sans selection:bg-gold/20 selection:text-ash">
+  <!-- Progress Bar -->
+  <!-- Skip Link for Accessibility -->
+  <a href="#main" class="skip-link">Langsung ke konten utama</a>
+
+  <div id="scrollProgress" class="scroll-progress"></div>
+
   <div class="fixed inset-0 grain z-[1]"></div>
 
   <!-- Header shared -->
@@ -55,27 +60,25 @@
       <div
         class="mt-4 flex items-center justify-between rounded-2xl bg-obsidian/55 backdrop-blur-md border border-gold/15 shadow-deep">
         <a href="index.html" class="flex items-center gap-3 px-4 py-3">
-          <div class="relative h-10 w-10 sm:h-11 sm:w-11 rounded-2xl border border-gold/30 bg-obsidian/40 overflow-hidden">
-  <!-- glow frame -->
-  <div class="absolute inset-0 rounded-2xl shadow-[0_0_0_1px_rgba(200,169,81,.18),0_0_24px_rgba(200,169,81,.10)]"></div>
+          <div
+            class="relative h-10 w-10 sm:h-11 sm:w-11 rounded-2xl border border-gold/30 bg-obsidian/40 overflow-hidden">
+            <!-- glow frame -->
+            <div
+              class="absolute inset-0 rounded-2xl shadow-[0_0_0_1px_rgba(200,169,81,.18),0_0_24px_rgba(200,169,81,.10)]">
+            </div>
 
-  <!-- logo -->
-     <img
-      src="assets/img/logo.svg"
-      alt="Bali: The Sacred Veil logo"
-      class="relative z-[1] w-full h-full object-cover scale-[1.35]"
-      loading="eager"
-      decoding="async"
-   />
-</div>
+            <!-- logo -->
+            <img src="assets/img/logo.svg" alt="Bali: The Sacred Veil logo"
+              class="relative z-[1] w-full h-full object-cover scale-[1.35]" loading="eager" decoding="async" />
+          </div>
           <div class="leading-tight">
             <div class="font-serif tracking-wide">Nusantara Bali Heritage</div>
-            <div class="text-xs text-ash/60 -mt-0.5" data-i18n="nav.brandSub">Budaya Bali Keunikan & Identitas Nusantara</div>
+            <div class="text-xs text-ash/60 -mt-0.5 brand-subtitle-mobile-hide" data-i18n="nav.brandSub">Budaya Bali
+              Keunikan & Identitas Nusantara</div>
           </div>
         </a>
 
         <div class="flex items-center gap-2 pr-3">
-
           <button id="audioBtn"
             class="rounded-xl border border-gold/15 bg-obsidian/50 px-3 py-2 text-sm text-ash/90 hover:border-gold/35 transition">
             <span id="audioLabel" class="text-gold">Audio Off</span>
@@ -90,7 +93,7 @@
     <source src="assets/audio/Lagu Daerah Bali.mp3" type="audio/mpeg" />
   </audio>
 
-  <main class="relative z-[10] pt-28">
+  <main class="relative z-[10] pt-20 sm:pt-28 overflow-x-hidden">
     <section class="relative py-16 sm:py-20">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <a href="index.html#overview"
@@ -101,78 +104,371 @@
         <div class="mt-6 max-w-3xl">
           <p class="reveal text-gold/90 tracking-[0.18em] uppercase text-xs">Rituals Beyond Time</p>
           <h1 class="reveal mt-3 font-serif text-3xl sm:text-5xl tracking-wide">Ritual Bali (Budaya & Makna)</h1>
-          <p class="reveal mt-5 text-ash/80 leading-relaxed">
-            Dalam budaya Bali, ritual bukan sekadar peristiwa seremonial.
-            Ia adalah cara masyarakat menjaga hubungan antara manusia, alam, dan dimensi spiritual—sebuah praktik hidup yang diwariskan dalam tradisi Nusantara.
 
-            Halaman ini membahas ritual-ritual Bali melalui makna, konteks sosial, dan etika budaya, tanpa menghilangkan penghormatannya.
+          <!-- Storytelling Introduction -->
+          <div class="reveal story-quote mt-6">
+            Bayangkan siklus kehidupan yang dihormati dengan setiap gerakan. Di Bali, ritual bukan hanya upacara — ia
+            adalah napas komunitas, detak jantung tradisi, dan jembatan antara yang terlihat dan tak terlihat.
+          </div>
+
+          <p class="reveal mt-5 text-ash/80 leading-relaxed">
+            Dalam budaya Bali, ritual adalah cara masyarakat menjaga hubungan antara manusia, alam, dan dimensi
+            spiritual.
+            Halaman ini membahas ritual-ritual Bali melalui <span class="term"
+              data-tooltip="Arti dan tujuan di balik setiap praktik">makna</span>, konteks sosial, dan <span
+              class="term" data-tooltip="Cara bersikap yang tepat dan menghormati">etika budaya</span>.
           </p>
+
+          <!-- Quick Reference Box -->
+          <div class="reveal mt-6 rounded-2xl border border-gold/15 bg-obsidian/40 p-4">
+            <h3 class="text-sm text-gold/90 font-medium mb-3">🔍 Sekilas Pandang</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="icon-badge text-sm">🕯️</span>
+                <span class="text-ash/70">Ngaben — Pelepasan Jiwa</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="icon-badge text-sm">🎋</span>
+                <span class="text-ash/70">Galungan — Kemenangan Dharma</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Ngaben Card -->
           <article
-            class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 overflow-hidden shadow-deep hover:border-gold/35 transition">
+            class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 overflow-hidden shadow-deep hover:border-gold/35 hover-glow transition">
             <div class="relative h-44 overflow-hidden">
               <div
                 class="absolute inset-0 bg-[url('assets/img/ritual-ngaben.jpg')] bg-cover bg-center opacity-70 slow-zoom">
               </div>
               <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
               <div class="absolute bottom-4 left-5">
+                <div class="icon-badge mb-2">🕯️</div>
                 <h2 class="font-serif text-2xl tracking-wide">Ngaben</h2>
-                <p class="text-xs text-ash/70 mt-1">Visual simbolik, disajikan dengan hormat</p>
+                <p class="text-xs text-ash/70 mt-1">Upacara Pelepasan & Penghormatan</p>
               </div>
             </div>
             <div class="p-6">
-              <p class="text-ash/75 leading-relaxed">
-                Upacara pelepasan, penataan kembali, dan penghormatan pada perjalanan jiwa.
-              </p>
-              <a class="mt-5 inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30"
+              <!-- Key Points Preview -->
+              <ul class="text-sm text-ash/75 space-y-2 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-gold/70">→</span>
+                  <span>Pelepasan roh dari keterikatan duniawi</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gold/70">→</span>
+                  <span>Pengembalian unsur <span class="term"
+                      data-tooltip="Lima elemen: tanah, air, api, udara, ruang">Panca Maha Bhuta</span></span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gold/70">→</span>
+                  <span>Bukan kesedihan, melainkan perayaan pelepasan</span>
+                </li>
+              </ul>
+
+              <a class="inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30"
                 href="dance-detail.html?dance=ngaben">
-                <span data-i18n="common.readMore">Baca Selengkapnya</span> →
+                <span data-i18n="common.readMore">Pelajari Makna & Etika</span> →
               </a>
             </div>
           </article>
 
+          <!-- Galungan Card -->
           <article
-            class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 overflow-hidden shadow-deep hover:border-gold/35 transition">
+            class="reveal rounded-3xl border border-gold/15 bg-obsidian/55 overflow-hidden shadow-deep hover:border-gold/35 hover-glow transition">
             <div class="relative h-44 overflow-hidden">
               <div
                 class="absolute inset-0 bg-[url('assets/img/ritual-galungan.jpg')] bg-cover bg-center opacity-70 slow-zoom">
               </div>
               <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
               <div class="absolute bottom-4 left-5">
+                <div class="icon-badge mb-2">🎋</div>
                 <h2 class="font-serif text-2xl tracking-wide">Galungan & Kuningan</h2>
-                <p class="text-xs text-ash/70 mt-1">Visual simbolik, disajikan dengan hormat</p>
+                <p class="text-xs text-ash/70 mt-1">Siklus Kemenangan & Harmoni</p>
               </div>
             </div>
             <div class="p-6">
-              <p class="text-ash/75 leading-relaxed">
-                Perayaan kemenangan dharma—kembalinya harmoni dalam tatanan semesta.
-              </p>
-              <a class="mt-5 inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30"
+              <!-- Key Points Preview -->
+              <ul class="text-sm text-ash/75 space-y-2 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-gold/70">→</span>
+                  <span>Kemenangan <span class="term" data-tooltip="Kebenaran dan kebajikan">Dharma</span> atas <span
+                      class="term" data-tooltip="Kekacauan dan ketidakbenaran">Adharma</span></span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gold/70">→</span>
+                  <span>Kehadiran leluhur secara spiritual</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gold/70">→</span>
+                  <span>Penguatan ikatan keluarga & komunitas</span>
+                </li>
+              </ul>
+
+              <a class="inline-flex items-center gap-2 text-sm text-gold/90 hover:text-gold underline underline-offset-4 decoration-gold/30"
                 href="dance-detail.html?dance=galungan-kuningan">
-                <span data-i18n="common.readMore">Baca Selengkapnya</span> →
+                <span data-i18n="common.readMore">Pelajari Makna & Etika</span> →
               </a>
             </div>
           </article>
         </div>
 
-        <footer class="mt-16 pb-10 text-center text-sm text-ash/55">
-          <div class="mx-auto max-w-3xl px-4">
-            <div class="footer-line mb-6"></div>
-            <p class="leading-relaxed">
-              © <span id="year"></span> <span class="text-ash/70">Nusantara Bali Heritage</span> — Smartone.
-            </p>
-            <p class="mt-2 text-xs text-ash/45 leading-relaxed">
-              Presented with cultural respect. Visuals may be symbolic. Avoids modification of sacred symbols and
-              sensational framing.
-            </p>
+        <!-- Tips untuk Pengunjung (Modern Design) -->
+        <div class="reveal mt-10 tips-modern">
+          <div class="tips-modern-header">
+            <span class="tips-icon-main">💡</span>
+            <h2>Tips untuk Pengunjung</h2>
           </div>
-        </footer>
+
+          <!-- Tab Navigation -->
+          <div class="tips-tabs">
+            <button class="tips-tab tab-do is-active" data-tab="do">
+              <span class="tips-tab-icon">✅</span>
+              <span>Disarankan</span>
+            </button>
+            <button class="tips-tab tab-dont" data-tab="dont">
+              <span class="tips-tab-icon">⚠️</span>
+              <span>Dihindari</span>
+            </button>
+          </div>
+
+          <!-- Do's Content -->
+          <div class="tips-tab-content tips-do is-active" data-content="do">
+            <ul class="tips-modern-list">
+              <li class="tips-modern-item">
+                <div class="tips-item-header">
+                  <div class="tips-item-icon">👔</div>
+                  <span class="tips-item-title">Berpakaian sopan dan tertutup</span>
+                  <span class="tips-item-expand">▼</span>
+                </div>
+                <div class="tips-item-detail">
+                  <p>Kenakan pakaian yang menutupi bahu dan lutut. Bawa selendang atau kain untuk menutupi bagian tubuh
+                    saat memasuki area suci.</p>
+                </div>
+              </li>
+              <li class="tips-modern-item">
+                <div class="tips-item-header">
+                  <div class="tips-item-icon">🙏</div>
+                  <span class="tips-item-title">Menghormati upacara dari kejauhan</span>
+                  <span class="tips-item-expand">▼</span>
+                </div>
+                <div class="tips-item-detail">
+                  <p>Jaga jarak yang sopan saat upacara berlangsung. Posisikan diri lebih rendah dari pemangku atau
+                    pendeta yang memimpin ritual.</p>
+                </div>
+              </li>
+              <li class="tips-modern-item">
+                <div class="tips-item-header">
+                  <div class="tips-item-icon">❓</div>
+                  <span class="tips-item-title">Bertanya sebelum mendokumentasikan</span>
+                  <span class="tips-item-expand">▼</span>
+                </div>
+                <div class="tips-item-detail">
+                  <p>Selalu minta izin sebelum mengambil foto atau video. Beberapa momen sakral tidak diperkenankan
+                    untuk didokumentasikan.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Don'ts Content -->
+          <div class="tips-tab-content tips-dont" data-content="dont">
+            <ul class="tips-modern-list">
+              <li class="tips-modern-item">
+                <div class="tips-item-header">
+                  <div class="tips-item-icon">📷</div>
+                  <span class="tips-item-title">Memotret tanpa izin</span>
+                  <span class="tips-item-expand">▼</span>
+                </div>
+                <div class="tips-item-detail">
+                  <p>Mengambil foto tanpa izin dianggap tidak sopan dan dapat mengganggu kekhidmatan upacara yang sedang
+                    berlangsung.</p>
+                </div>
+              </li>
+              <li class="tips-modern-item">
+                <div class="tips-item-header">
+                  <div class="tips-item-icon">🚷</div>
+                  <span class="tips-item-title">Memasuki area yang dibatasi</span>
+                  <span class="tips-item-expand">▼</span>
+                </div>
+                <div class="tips-item-detail">
+                  <p>Beberapa area hanya boleh dimasuki oleh pemangku atau umat Hindu. Hormati batas-batas yang sudah
+                    ditetapkan.</p>
+                </div>
+              </li>
+              <li class="tips-modern-item">
+                <div class="tips-item-header">
+                  <div class="tips-item-icon">🗣️</div>
+                  <span class="tips-item-title">Berbicara keras saat upacara</span>
+                  <span class="tips-item-expand">▼</span>
+                </div>
+                <div class="tips-item-detail">
+                  <p>Suara keras dapat mengganggu konsentrasi dan kekhidmatan ritual. Bicaralah dengan suara pelan atau
+                    berbisik.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Progress Tracker -->
+          <div class="tips-progress">
+            <div class="tips-progress-label">
+              <span class="tips-progress-text">Tips yang telah dibaca</span>
+              <span class="tips-progress-count">0/6</span>
+            </div>
+            <div class="tips-progress-bar">
+              <div class="tips-progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="mt-16 pb-10">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="relative overflow-hidden rounded-[28px] border border-gold/15 bg-obsidian/55 backdrop-blur-xl shadow-deep">
+      <!-- soft glow -->
+      <div class="pointer-events-none absolute inset-0">
+        <div class="absolute -top-28 -left-28 h-80 w-80 rounded-full bg-gold/10 blur-3xl"></div>
+        <div class="absolute -bottom-28 -right-28 h-80 w-80 rounded-full bg-gold/10 blur-3xl"></div>
+        <div class="absolute inset-0 [mask-image:radial-gradient(60%_120%_at_50%_0%,black,transparent)] bg-gold/10"></div>
+      </div>
+
+      <div class="relative p-6 sm:p-8">
+        <!-- Top: closing line + actions -->
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="text-gold/90 tracking-[0.18em] uppercase text-[11px]">End of Journey</p>
+            <h3 class="mt-2 font-serif text-2xl sm:text-3xl tracking-wide">
+              Bali tak hanya dibaca — ia dirasakan, dipahami, lalu dihormati.
+            </h3>
+            <p class="mt-3 text-ash/70 leading-relaxed">
+              Terima kasih sudah berjalan sampai akhir. Jika Anda ingin memperdalam, lanjutkan ke bab pilihan atau uji pemahaman lewat Quiz Journey.
+            </p>
+
+            <!-- Mini nav -->
+            <nav class="mt-5 flex flex-wrap gap-2" aria-label="Footer navigation">
+              <a href="rituals.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Rituals</a>
+              <a href="dance-detail.html?dance=kecak" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Dances</a>
+              <a href="temples.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Temples</a>
+              <a href="map.html" class="rounded-full border border-gold/15 bg-obsidian/35 px-3 py-1.5 text-xs text-ash/75 hover:border-gold/35 transition">Map</a>
+              <a href="game.html" class="rounded-full border border-gold/20 bg-obsidian/40 px-3 py-1.5 text-xs text-gold/90 hover:border-gold/45 transition">Quiz Journey</a>
+            </nav>
+          </div>
+
+          <div class="lg:w-[360px]">
+            <!-- Journey progress -->
+            <div class="rounded-3xl border border-gold/10 bg-obsidian/35 p-5">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <div class="text-xs text-ash/60">Progress Perjalanan</div>
+                  <div class="mt-1 font-medium text-ash/90">
+                    <span id="journeyPercent">0</span>% Selesai
+                  </div>
+                </div>
+
+                <button id="copyLinkBtn"
+                  type="button"
+                  class="rounded-2xl border border-gold/15 bg-obsidian/45 px-3 py-2 text-xs text-ash/80 hover:border-gold/35 transition">
+                  Salin link
+                </button>
+              </div>
+
+              <div class="mt-4 h-2 w-full rounded-full bg-obsidian/50 border border-gold/10 overflow-hidden">
+                <div id="journeyBar" class="h-full w-0 bg-gradient-to-r from-gold/30 via-gold/50 to-gold/30"></div>
+              </div>
+
+              <!-- CTA -->
+              <div class="mt-5 flex items-center gap-2">
+                <a href="https://github.com/FatchurR/Nusantara-Bali-Heritage-Smartone-"
+                  target="_blank" rel="noopener"
+                  class="flex-1 text-center rounded-2xl border border-gold/25 bg-obsidian/45 px-4 py-2 text-sm text-gold/95 hover:border-gold/45 transition">
+                  Kunjungi GitHub →
+                </a>
+                <button id="toTopBtn"
+                  type="button"
+                  class="rounded-2xl border border-gold/15 bg-obsidian/35 px-4 py-2 text-sm text-ash/85 hover:border-gold/35 transition"
+                  aria-label="Back to top">
+                  ↑
+                </button>
+              </div>
+
+              <p class="mt-3 text-[11px] text-ash/55 leading-relaxed">
+                Disajikan secara edukatif, fokus pada makna, konteks, dan rasa hormat.
+              </p>
+            </div>
+
+            <!-- Social -->
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-ash/60">Ikuti Kami</div>
+              <div class="flex items-center gap-2">
+                <!-- GitHub -->
+                <a href="https://github.com/FatchurR/Nusantara-Bali-Heritage-Smartone-" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="GitHub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.59 2 12.253c0 4.53 2.865 8.383 6.839 9.74.5.096.682-.22.682-.49 0-.242-.009-.884-.014-1.736-2.782.615-3.369-1.37-3.369-1.37-.454-1.18-1.11-1.495-1.11-1.495-.908-.636.069-.623.069-.623 1.004.073 1.532 1.055 1.532 1.055.892 1.56 2.341 1.11 2.91.848.091-.665.35-1.11.636-1.366-2.22-.26-4.555-1.135-4.555-5.05 0-1.115.39-2.026 1.03-2.74-.103-.26-.446-1.31.098-2.73 0 0 .84-.275 2.75 1.047A9.3 9.3 0 0 1 12 7.07c.85.004 1.705.117 2.505.344 1.909-1.322 2.748-1.047 2.748-1.047.545 1.42.202 2.47.1 2.73.64.714 1.028 1.625 1.028 2.74 0 3.926-2.338 4.786-4.566 5.042.36.317.68.944.68 1.904 0 1.375-.012 2.484-.012 2.82 0 .273.18.592.688.49C19.138 20.632 22 16.78 22 12.253 22 6.59 17.523 2 12 2Z"
+                          fill="rgba(234,234,234,.85)"/>
+                  </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/rfein2/" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="Instagram">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M17.8 6.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+                          fill="rgba(234,234,234,.85)"/>
+                  </svg>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@smartonesda" target="_blank" rel="noopener"
+                   class="h-10 w-10 rounded-2xl border border-gold/15 bg-obsidian/35 grid place-items-center hover:border-gold/35 transition"
+                   aria-label="YouTube">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.6 31.6 0 0 0 2 12s.1 3 .4 4.8a3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1c.3-1.8.4-4.8.4-4.8s0-3-.4-4.8Z"
+                          fill="rgba(234,234,234,.85)"/>
+                    <path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="rgba(11,11,11,.85)"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom line -->
+        <div class="mt-8 pt-6 border-t border-gold/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="text-xs text-ash/55">
+            © <span id="year"></span> <span class="text-ash/70">Nusantara Bali Heritage</span>
+          </div>
+          <div class="text-xs text-ash/55">
+            <span class="text-ash/70">Smartone Software Engineer</span> — Fatchur Rochman
+          </div>
+        </div>
+
+        <!-- Toast (copy link) -->
+        <div id="toast"
+             class="pointer-events-none opacity-0 translate-y-2 transition fixed left-1/2 -translate-x-1/2 bottom-6 z-[80]
+                    rounded-2xl border border-gold/15 bg-obsidian/85 px-4 py-2 text-sm text-ash/80 shadow-deep">
+          Link copied.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
       </div>
     </section>
   </main>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Kembali ke atas">↑</button>
 
   <script src="assets/js/app.js"></script>
   <script src="assets/js/publish.js"></script>
